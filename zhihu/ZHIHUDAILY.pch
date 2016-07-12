@@ -1,0 +1,135 @@
+//
+//  ZHIHUDAILY.pch
+//  zhihu
+//
+//  Created by 李佳 on 16/6/23.
+//  Copyright © 2016年 LJ. All rights reserved.
+//
+
+#ifndef ZHIHUDAILY_pch
+#define ZHIHUDAILY_pch
+
+#import "SVProgressHUD.h"
+#import "MJRefresh.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+LJImage.h"
+#import "YYUIToolKit.h"
+#import "Post.h"
+#import "Masonry.h"
+
+#ifdef DEBUG
+#define debugLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define debugLog(...)
+#define debugMethod()
+#endif
+
+#define EMPTY_STRING        @""
+
+#define STR(key)            NSLocalizedString(key, nil)
+
+#define PATH_OF_APP_HOME    NSHomeDirectory()
+#define PATH_OF_TEMP        NSTemporaryDirectory()
+#define PATH_OF_DOCUMENT    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+
+// UIConstants provides contants variables for UI control.
+#define UI_NAVIGATION_BAR_HEIGHT    44
+#define UI_TAB_BAR_HEIGHT           49
+#define UI_STATUS_BAR_HEIGHT        20
+#define UI_SCREEN_WIDTH             320
+#define UI_SCREEN_HEIGHT            ([[UIScreen mainScreen] bounds].size.height)
+
+#define UI_LABEL_LENGTH             200
+#define UI_LABEL_HEIGHT             15
+#define UI_LABEL_FONT_SIZE          12
+#define UI_LABEL_FONT               [UIFont systemFontOfSize:UI_LABEL_FONT_SIZE]
+
+
+
+/*
+ *  System Versioning Preprocessor Macros
+ */
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+/*
+ Usage sample:
+
+ if (SYSTEM_VERSION_LESS_THAN(@"4.0")) {
+ ...
+ }
+
+ if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"3.1.1")) {
+ ...
+ }
+ */
+
+
+
+// 设备相关信息
+#define DEVICE_WIDTH [[UIScreen mainScreen] bounds].size.width      //硬件宽度
+#define DEVICE_HEIGHT [[UIScreen mainScreen] bounds].size.height    //硬件高度
+/* ******************************* */
+
+
+
+// 判断是否为模拟器 是则 宏SIMULATOR 为1 否则为0
+#if TARGET_IPHONE_SIMULATOR
+#define SIMULATOR 1
+#elif TARGET_OS_IPHONE
+#define SIMULATOR 0
+#endif
+/* ******************************* */
+
+
+
+/**
+ *  知乎的api
+ *
+ *  @return 知乎APIs
+ */
+//最新动态
+#define ZH_LATEST_TIMELINE @"http://news-at.zhihu.com/api/4/news/latest"
+//#define ZH_LATEST_TIMELINE @"http://api2.juheapi.com/jztk/query&subject=1&model=c1&testType=&=&key=940eef5928e8a4848b62d785f17504c4"
+// 过往消息
+#define ZH_BEFORE_TIMELINE @"http://news.at.zhihu.com/api/4/news/before/"
+
+//4. 消息内容获取与离线下载
+#define ZH_DETAIL @"http://news-at.zhihu.com/api/4/news/"
+/* ******************************* */
+
+
+
+
+
+//弱引用
+#define WS(weakSelf) __weak __typeof(&*self)weakSelf = self;
+/* ******************************* */
+
+
+//自定义颜色
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define UIColorFromRGBA(rgbValue,a) ([UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:((float)a)])
+/* ******************************* */
+
+
+//全局比例
+#define KSCALE (DEVICE_WIDTH / 375.0)
+
+
+//各账号
+
+#define QP_APPKEY       @"209232341b2f616"
+
+#define QP_APPSECRET    @"98e3ba3fe70446a1a98c739c09e09b77"
+#define QP_SPACENAME    @"demozhihu2016"
+#define QP_DONAMIN      @"demozhihu2016.s.qupai.me"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* ZHIHUDAILY_pch */
