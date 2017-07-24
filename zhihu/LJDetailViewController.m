@@ -122,6 +122,7 @@
 
 - (void)loadData
 {
+    [SVProgressHUD show];
     if (!topView) {
 
         topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 200 * KSCALE)];
@@ -151,6 +152,10 @@
     }
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [Post getDataWithURL:[NSString stringWithFormat:@"%@%@", ZH_DETAIL, _contentID] Block:^(id response, NSError *error) {
+            if (error) {
+                [SVProgressHUD showErrorWithStatus:@"网络故障"];
+                return ;
+            }
             NSString *bodyHtml = [(NSDictionary *)response objectForKey:@"body"];
             //如果html没有head，添加head，以及各种样式，是为了能让图片缩放
             bodyHtml =  [NSString stringWithFormat:@"<html> \n"
@@ -172,7 +177,7 @@
 
             NSString *image_source = [(NSDictionary *)response objectForKey:@"image_source"];
             autherLabel.text = [NSString stringWithFormat:@"图片 : %@", image_source];
-
+            [SVProgressHUD dismiss];
         }];
     });
 }

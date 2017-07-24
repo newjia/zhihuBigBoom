@@ -13,6 +13,7 @@
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource, SDCycleScrollViewDelegate>
 {
+    NSMutableArray  *totalArray;
     NSMutableArray  *aryData;
     NSMutableArray  *topAry, *titleAry, *topImgArray;
     UITableView     *tbView;
@@ -26,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    totalArray = @[].mutableCopy;
     aryData = @[].mutableCopy;
     topAry = @[].mutableCopy;
     titleAry = @[].mutableCopy;
@@ -110,7 +111,9 @@
             [Post getDataWithURL:ZH_LATEST_TIMELINE Block:^(id response, NSError *error) {
                 if (response && [response isKindOfClass:[NSDictionary class]]) {
                     cacheDic = [(NSDictionary *)response copy];
-                    [[NSUserDefaults standardUserDefaults] setObject:cacheDic forKey:@"cacheDic"];
+                    [totalArray addObject:cacheDic];
+                    NSArray *unmutTotalArray = totalArray.copy;
+                    [[NSUserDefaults standardUserDefaults] setObject:unmutTotalArray forKey:@"totalArray"];
                     [[NSUserDefaults standardUserDefaults] synchronize];
 
 
@@ -165,8 +168,7 @@
             NSString *beforeDate = [dateFormatter stringFromDate:currentDate];
             [Post getDataWithURL:[NSString stringWithFormat:@"%@%@", ZH_BEFORE_TIMELINE, beforeDate] Block:^(id response, NSError *error) {
                 if (response && [response isKindOfClass:[NSDictionary class]]) {
-                    NSArray *story = [(NSDictionary *)response objectForKey:@"stories"];
-                    [aryData addObjectsFromArray:story];
+                    [totalArray addObject:response];
                 }
 
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -195,9 +197,15 @@
 }
 
 #pragma mark - UITableView Datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return totalArray.count;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return aryData.count;
+    NSDictionary *totalDic = [totalArray objectAtIndex:section];
+    NSArray *stories = [totalDic objectForKey:@"stories"];
+    return stories.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -209,10 +217,13 @@
         cell = [[LJIndexCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
 
-    if (aryData.count) {
-        NSDictionary *dic = [aryData objectAtIndex:indexPath.row];
+    if (totalArray && totalArray.count) {
+        NSDictionary *totalDic = [totalArray objectAtIndex:indexPath.section];
+        NSArray *stories = [totalDic objectForKey:@"stories"];
+        NSDictionary *dic = [stories objectAtIndex:indexPath.row];
         [cell refreshWithData:dic];
     }
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;
@@ -223,11 +234,35 @@
     return 90;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (!totalArray || !totalArray.count) {
+        return [UIView new];
+    }
+    UILabel *label = [[UILabel alloc] init];
+    label.font = [UIFont boldSystemFontOfSize:16];
+    label.textColor = [UIColor purpleColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.frame = CGRectMake(0, 0, DEVICE_WIDTH, 40);
+    NSDictionary *dateDic = [totalArray objectAtIndex:section];
+    label.text = [dateDic objectForKey:@"date"];
+    return label;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40;
+}
+
 #pragma mark - UITableView Delegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (aryData.count) {
-        NSDictionary *dic = [aryData objectAtIndex:indexPath.row];
+
+
+    if (totalArray && totalArray.count) {
+        NSDictionary *totalDic = [totalArray objectAtIndex:indexPath.section];
+        NSArray *stories = [totalDic objectForKey:@"stories"];
+        NSDictionary *dic = [stories objectAtIndex:indexPath.row];
          NSString *contentID = [dic objectForKey:@"id"];
         LJDetailViewController *detailVC = [LJDetailViewController new];
         detailVC.contentID = contentID;

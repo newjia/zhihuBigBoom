@@ -40,7 +40,7 @@
     cornerLayer.borderWidth = .5;
 
     [cornerLayer setShadowOpacity: .5];
-    cornerLayer.shadowOffset = CGSizeMake(3, 3);
+    cornerLayer.shadowOffset = CGSizeMake(0, 0);
     cornerLayer.shadowColor = [UIColor grayColor].CGColor;
 
     [cornerLayer setShadowPath:[[UIBezierPath bezierPathWithRect:bgView.bounds] CGPath]];

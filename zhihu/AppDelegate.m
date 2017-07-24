@@ -12,7 +12,9 @@
 #import "SecondController.h"
 #import "ViewController.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
-
+#if defined(DEBUG) || defined(_DEBUG)
+#import "FHHFPSIndicator.h"
+#endif
 @interface AppDelegate ()
 
 @end
@@ -26,14 +28,18 @@
 
     ViewController *indexVC = [[ViewController alloc] init];
     UINavigationController *indexNav = [[UINavigationController alloc] initWithRootViewController:indexVC];
-    UINavigationController *secNav = [[UINavigationController alloc] initWithRootViewController:[SecondController new]];
 
     RDVTabBarController * tabBarController = [[RDVTabBarController alloc] init];
-
-    [tabBarController setViewControllers:@[indexNav, secNav]];
+    tabBarController.tabBarHidden = 1;
+    [tabBarController setViewControllers:@[indexNav]];
 
     self.window.rootViewController = tabBarController;
+    [self.window makeKeyAndVisible];
 
+#if defined(DEBUG) || defined(_DEBUG)
+    [[FHHFPSIndicator sharedFPSIndicator] show];
+    //        [FHHFPSIndicator sharedFPSIndicator].fpsLabelPosition = FPSIndicatorPositionTopRight;
+#endif
     return YES;
 }
 
