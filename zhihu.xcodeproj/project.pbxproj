@@ -97,7 +97,6 @@
 		2AACEDF01D1BEC64008F0BBF /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACEDDA1D1BEC64008F0BBF /* UIScrollView+MJExtension.m */; };
 		2AACEDF11D1BEC64008F0BBF /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACEDDC1D1BEC64008F0BBF /* UIScrollView+MJRefresh.m */; };
 		2AACEDF21D1BEC64008F0BBF /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACEDDE1D1BEC64008F0BBF /* UIView+MJExtension.m */; };
-		2AACEDF41D1BED57008F0BBF /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AACEDF31D1BED57008F0BBF /* Reveal.framework */; };
 		2AACEDF71D1BF5A5008F0BBF /* IWNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACEDF61D1BF5A5008F0BBF /* IWNavView.m */; };
 		2AACEE161D1BFE06008F0BBF /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACEDFA1D1BFE06008F0BBF /* MASCompositeConstraint.m */; };
 		2AACEE171D1BFE06008F0BBF /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACEDFD1D1BFE06008F0BBF /* MASConstraint.m */; };
@@ -320,7 +319,6 @@
 		2AACEDDC1D1BEC64008F0BBF /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		2AACEDDD1D1BEC64008F0BBF /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		2AACEDDE1D1BEC64008F0BBF /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
-		2AACEDF31D1BED57008F0BBF /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		2AACEDF51D1BF5A5008F0BBF /* IWNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWNavView.h; sourceTree = "<group>"; };
 		2AACEDF61D1BF5A5008F0BBF /* IWNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWNavView.m; sourceTree = "<group>"; };
 		2AACEDF91D1BFE06008F0BBF /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
@@ -371,7 +369,6 @@
 				0D96776F1D1EE56500CD039A /* libz.tbd in Frameworks */,
 				0D96776E1D1EE54100CD039A /* QPLive.framework in Frameworks */,
 				2A60F1301D1B860A0097E0B6 /* ImageIO.framework in Frameworks */,
-				2AACEDF41D1BED57008F0BBF /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,7 +447,6 @@
 				0D9677741D1EE57D00CD039A /* libstdc++.tbd */,
 				0D9677721D1EE57300CD039A /* AudioToolbox.framework */,
 				0D9677701D1EE56D00CD039A /* VideoToolbox.framework */,
-				2AACEDF31D1BED57008F0BBF /* Reveal.framework */,
 				2A60F0EC1D1B83AC0097E0B6 /* libz.tbd */,
 				2A60F0EA1D1B83A70097E0B6 /* libsqlite3.tbd */,
 				2A60F0E81D1B83A10097E0B6 /* SystemConfiguration.framework */,
