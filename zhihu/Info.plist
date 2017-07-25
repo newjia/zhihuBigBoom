@@ -38,7 +38,7 @@
 		<string>armv7</string>
 	</array>
 	<key>CFBundleDisplayName</key>
-	<string>知乎大爆炸</string>
+	<string>脑洞大爆炸</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "RDVTabBarController.h"
 #import "RDVTabBarItem.h"
-#import "SecondController.h"
 #import "ViewController.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #if defined(DEBUG) || defined(_DEBUG)

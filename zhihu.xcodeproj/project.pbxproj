@@ -39,7 +39,6 @@
 		2A60EFC81D1B76920097E0B6 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A60EFB91D1B76920097E0B6 /* UIWebView+AFNetworking.m */; };
 		2A60EFCD1D1B77B10097E0B6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A60EFCC1D1B77B10097E0B6 /* Post.m */; };
 		2A60F1301D1B860A0097E0B6 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A60F0E01D1B82630097E0B6 /* ImageIO.framework */; };
-		2AA943B71D348B7200608724 /* SecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA943B61D348B7200608724 /* SecondController.m */; };
 		2AACED301D1BAAED008F0BBF /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACED101D1BAAED008F0BBF /* MKAnnotationView+WebCache.m */; };
 		2AACED311D1BAAED008F0BBF /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACED121D1BAAED008F0BBF /* NSData+ImageContentType.m */; };
 		2AACED321D1BAAED008F0BBF /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACED141D1BAAED008F0BBF /* SDImageCache.m */; };
@@ -202,8 +201,6 @@
 		2A60F0EA1D1B83A70097E0B6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		2A60F0EC1D1B83AC0097E0B6 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		2A60F1951D1B8C610097E0B6 /* ZHIHUDAILY.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHIHUDAILY.pch; sourceTree = "<group>"; };
-		2AA943B51D348B7200608724 /* SecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondController.h; sourceTree = "<group>"; };
-		2AA943B61D348B7200608724 /* SecondController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondController.m; sourceTree = "<group>"; };
 		2AACED0F1D1BAAED008F0BBF /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		2AACED101D1BAAED008F0BBF /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		2AACED111D1BAAED008F0BBF /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -426,8 +423,6 @@
 				2A60EF671D1B75BF0097E0B6 /* AppDelegate.m */,
 				2A60EF691D1B75BF0097E0B6 /* ViewController.h */,
 				2A60EF6A1D1B75BF0097E0B6 /* ViewController.m */,
-				2AA943B51D348B7200608724 /* SecondController.h */,
-				2AA943B61D348B7200608724 /* SecondController.m */,
 				2AACED9D1D1BC524008F0BBF /* LJDetailViewController.h */,
 				2AACED9E1D1BC524008F0BBF /* LJDetailViewController.m */,
 				2A60F1951D1B8C610097E0B6 /* ZHIHUDAILY.pch */,
@@ -980,7 +975,6 @@
 				2AD52DE81F2621FF002F4BDD /* UIWindow+FHH.m in Sources */,
 				2AACED501D1BB11E008F0BBF /* TAAbstractDotView.m in Sources */,
 				2AACED3F1D1BAAED008F0BBF /* UIView+WebCacheOperation.m in Sources */,
-				2AA943B71D348B7200608724 /* SecondController.m in Sources */,
 				2AACEE171D1BFE06008F0BBF /* MASConstraint.m in Sources */,
 				2AACEDA91D1BC5DA008F0BBF /* RDVTabBarItem.m in Sources */,
 				2AACED981D1BC241008F0BBF /* SVProgressAnimatedView.m in Sources */,
@@ -1218,12 +1212,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lz",
-					"-framework",
-					Reveal,
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lj.zhihu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1247,12 +1236,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lz",
-					"-framework",
-					Reveal,
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lj.zhihu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

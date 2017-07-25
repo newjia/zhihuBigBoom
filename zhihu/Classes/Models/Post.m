@@ -14,13 +14,14 @@
 + (void)getDataWithURL: (NSString *)url Block: (void (^)(id response, NSError *error))block;
 {
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    [session GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSLog(@"url--   %@",  url);
+    [session GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"请求地址：\n--%@ -- \n responseObject      %@", url, responseObject);
         block(responseObject, nil);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         block(nil,nil);
-    }];
 
+    }];
 }
 
 

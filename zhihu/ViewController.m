@@ -20,6 +20,8 @@
     NSInteger       dateCount;
     NSDictionary    *cacheDic;
     UIButton        *liveShowButton;
+    UIImageView     *topClickIV;    // 向上的按钮 ;
+
 }
 @end
 
@@ -32,7 +34,7 @@
     topAry = @[].mutableCopy;
     titleAry = @[].mutableCopy;
     topImgArray = @[].mutableCopy;
-    tbView = [[UITableView alloc] initWithFrame: CGRectMake(0,  0  , DEVICE_WIDTH, DEVICE_HEIGHT ) style:UITableViewStylePlain];
+    tbView = [[UITableView alloc] initWithFrame: CGRectMake(0,  0, DEVICE_WIDTH, DEVICE_HEIGHT) style:UITableViewStylePlain];
     tbView.dataSource = self;
     tbView.delegate   = self;
     tbView.tableFooterView = [UIView new];
@@ -41,10 +43,17 @@
     [self.view addSubview:tbView];
 
     WS(ws);
+    [self.view addSubview:({
+        topClickIV = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"HO_scrollToTop"]];
+        topClickIV .frame = CGRectMake(DEVICE_WIDTH - 23 - 44, DEVICE_HEIGHT - 49 -  44 - 17, 44, 44);
+        topClickIV.hidden = YES;
+        topClickIV ;
+    })];
+    [topClickIV addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollToTop)] ];
+    topClickIV.userInteractionEnabled = YES;
 
     tbView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [ws loadData];
-
     }];
 
     tbView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
@@ -111,6 +120,7 @@
             [Post getDataWithURL:ZH_LATEST_TIMELINE Block:^(id response, NSError *error) {
                 if (response && [response isKindOfClass:[NSDictionary class]]) {
                     cacheDic = [(NSDictionary *)response copy];
+                    [totalArray removeAllObjects];
                     [totalArray addObject:cacheDic];
                     NSArray *unmutTotalArray = totalArray.copy;
                     [[NSUserDefaults standardUserDefaults] setObject:unmutTotalArray forKey:@"totalArray"];
@@ -239,19 +249,23 @@
     if (!totalArray || !totalArray.count) {
         return [UIView new];
     }
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 30)] ;
+    bgView.backgroundColor = [UIColor colorWithWhite:.9 alpha:.5];
+
     UILabel *label = [[UILabel alloc] init];
     label.font = [UIFont boldSystemFontOfSize:16];
     label.textColor = [UIColor purpleColor];
     label.textAlignment = NSTextAlignmentCenter;
-    label.frame = CGRectMake(0, 0, DEVICE_WIDTH, 40);
+    label.frame = CGRectMake(0, 0, DEVICE_WIDTH, 30);
     NSDictionary *dateDic = [totalArray objectAtIndex:section];
     label.text = [dateDic objectForKey:@"date"];
-    return label;
+    [bgView addSubview:label];
+    return bgView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40;
+    return 30;
 }
 
 #pragma mark - UITableView Delegate methods
@@ -271,6 +285,24 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
+    topClickIV.hidden = scrollView.contentOffset.y <= 2 * DEVICE_HEIGHT;
+
+    if (scrollView.contentOffset.y > 20) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    }else{
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    }
+}
+
+- (void)scrollToTop
+{
+    if (totalArray && totalArray.count) {
+        [tbView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

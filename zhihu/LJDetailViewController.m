@@ -162,7 +162,7 @@
                          "<head> \n"
                          "<style type=\"text/css\"> \n"
                          "body {margin:%f;font-size: %f;}\n"
-                         "a {text-decoration: none; color:lightblue}\n"
+                         "a {text-decoration: none; color:blue}\n"
                          "</style> \n"
                          "</head> \n"
                          "<body>%@</body> \n"

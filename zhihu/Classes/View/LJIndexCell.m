@@ -36,7 +36,7 @@
     cornerLayer.frame = bgView.bounds;
     cornerLayer.path = [[UIBezierPath bezierPathWithRoundedRect:bgView.bounds cornerRadius:5] CGPath];
     cornerLayer.fillColor = [UIColor whiteColor].CGColor;
-    cornerLayer.borderColor = [UIColor blackColor].CGColor;
+    cornerLayer.borderColor = [UIColor lightGrayColor].CGColor;
     cornerLayer.borderWidth = .5;
 
     [cornerLayer setShadowOpacity: .5];
